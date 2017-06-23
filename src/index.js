@@ -2,61 +2,6 @@
 
 // use lodash ?
 
-const sbmlUnits = [
-  "ampere", "coulomb", "gray", "joule", "litre", "mole", "radian", "steradian", "weber",
-  "avogadro", "dimensionless", "henry", "katal", "lumen", "newton", "second", "tesla",
-  "becquerel", "farad", "hertz", "kelvin", "lux", "ohm", "siemens", "volt",
-  "candela", "gram", "item", "kilogram", "metre", "pascal", "sievert", "watt"
-];
-
-const simpleUnits = {
-  "pmole":[],
-  "nmole":[],
-  "umole":[],
-  "mmole":[],
-  "mole":[],
-  
-  "pM":[],
-  "nM":[],
-  "uM":[],
-  "mM":[],
-  "M":[],
-  
-  "mL":[],
-  "L":[],
-  
-  "ug":[],
-  "mg":[],
-  "g":[],
-  "kg":[],
-  
-  "s": [{"kind": "second"}],
-  "min":[],
-  "h":[],
-  "day":[],
-  "month":[],
-  "year":[],
-  
-  "cell":[],
-  "kcell":[],
-  
-  "Da": [{"kind": "gram", "exponent": "1"}, {"kind": "mole", "exponent": "-1"}],
-  "cm":[],
-  "m":[],
-  
-  "dl": [{"kind": "dimensionless"}],
-  
-  "item":[],
-  
-  "Pa":[],
-  "J":[],
-  "kJ":[],
-  "mV":[],
-  "V":[],
-  "K":[]
-};
-
-
 // object of structure [{kind: "mM", exponent: 2}, {kind: "L", exponent: 1}, {kind: "mg", exponent: -1}, {kind: "h", exponent: -2}]
 class Unit {
   

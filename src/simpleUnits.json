@@ -1,0 +1,47 @@
+
+simpleUnits = {
+  "pmole":[{kind:"mole", scale: -12}],
+  "nmole":[],
+  "umole":[],
+  "mmole":[],
+  "mole":[],
+  
+  "pM":[{kind:"mole", scale: -12}, {kind:"liter", exponent: -1}],
+  "nM":[],
+  "uM":[],
+  "mM":[],
+  "M":[],
+  
+  "mL":[],
+  "L":[],
+  
+  "ug":[],
+  "mg":[],
+  "g":[],
+  "kg":[],
+  
+  "s": [{"kind": "second"}],
+  "min":[],
+  "h":[],
+  "day":[],
+  "month":[],
+  "year":[],
+  
+  "cell":[{kind: "item"}],
+  "kcell":[],
+  
+  "Da": [{"kind": "gram", "exponent": "1"}, {"kind": "mole", "exponent": "-1"}],
+  "cm":[],
+  "m":[],
+  
+  "dl": [{"kind": "dimensionless"}],
+  
+  "item":[{kind: "item"}],
+  
+  "Pa":[],
+  "J":[],
+  "kJ":[],
+  "mV":[],
+  "V":[],
+  "K":[]
+};
