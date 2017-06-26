@@ -26,8 +26,15 @@ class Unit {
     return res;
   }
   
-  // serialize unit-object to string with TeX '\frac{mM^{2} L}{mg h^{2}}'
+  // serialize unit-object to string with TeX '\frac{mM^{2} \cdot L}{mg \cdot h^{2}}'
   toTex(){
+    let res = "";
+    
+    return res;
+  }
+  
+  // transform to sbml units
+  toSbmlUnits(){
     let res = "";
     
     return res;
