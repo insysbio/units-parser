@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Testing conversion unit</title>
+<link rel="stylesheet" href="style.css"/>
+
+<!-- Load json -->
+<script src="sbmlUnits.json"></script>
+<script src="simpleUnits.json"></script>
+
+<!-- Load example -->
+<script src="../cases/correct examples.js"></script>
+
+<script src="index.js"></script>
+</head>
+<body>
+
+<div id="content">
+</div>
+
+<script>
+'use strict'
+var content = document.getElementById("content"); 
+examples.forEach(function(item) {
+let un = Unit.parseFromString(item); 
+
+let container = document.createElement("div");
+
+let head = document.createElement("h2");
+head.appendChild(document.createTextNode("Input "+item));
+container.appendChild(head);
+
+head = document.createElement("h3");
+head.appendChild(document.createTextNode("Unit-object after parse "));
+container.appendChild(head);
+
+let parseJsonUnit = document.createElement("textarea");
+parseJsonUnit.appendChild(document.createTextNode(JSON.stringify(un, null, 2)));
+container.appendChild(parseJsonUnit);
+
+head = document.createElement("h3");
+head.appendChild(document.createTextNode("Unit-object to string "));
+container.appendChild(head);
+
+head = document.createElement("h3");
+head.appendChild(document.createTextNode("Unit-object hash " + un.toHash()));
+container.appendChild(head);
+
+container.appendChild(document.createElement("hr"));
+
+content.appendChild(container);
+
+
+function stripJSON(cont) {
+	cont = cont.replace(/\n/g, "<br/>");
+	cont = cont.replace(/ /g, "&nbsp;");
+	return cont;
+}    
+});
+</script>
+</body>
+</html>
