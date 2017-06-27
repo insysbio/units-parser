@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="style.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--<script type="text/javascript" src="http://insilicobio.ru/mathjax/MathJax.js?config=TeX-MML-AM_CHTML"> </script>-->
 </head>
 <body id="top">
 <div class="w3-container">
@@ -32,7 +34,6 @@
   <a href="#top" class="w3-right  w3-button w3-circle w3-blue-grey"><i class="fa fa-arrow-up"></i></a>
 </p>  
 </div>
-
 <script>
 'use strict'
 let content = document.getElementById("content"),
@@ -89,15 +90,22 @@ examples.forEach(function(item) {
   let sbmlUnitTextarea = document.createElement("textarea");
   sbmlUnitTextarea.appendChild(document.createTextNode(JSON.stringify(un.toSbmlUnits(), null, 2)));
   container.appendChild(sbmlUnitTextarea);
+  
+  head = document.createElement("h3");
+  head.appendChild(document.createTextNode("Unit definition"));
+  container.appendChild(head);
 
+  let defUnitTextarea = document.createElement("textarea");
+  defUnitTextarea.appendChild(document.createTextNode( stripDOM(new XMLSerializer().serializeToString(un.toSbmlUnitDefinition()))) );
+  container.appendChild(defUnitTextarea);
+  
   container.appendChild(document.createElement("hr"));
 
   content.appendChild(container);
 });
 
-function stripJSON(cont) {
-	cont = cont.replace(/\n/g, "<br/>");
-	cont = cont.replace(/ /g, "&nbsp;");
+function stripDOM(cont) {
+	cont = cont.replace(/></g, ">\n<");
 	return cont;
 } 
 </script>

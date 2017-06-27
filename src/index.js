@@ -86,7 +86,8 @@ class Unit extends Array  {
   // serialize unit-object to string with TeX '\frac{mM^{2} \cdot L}{mg \cdot h^{2}}'
   toTex(){
     let res = "";
-    
+    //numerator
+    //denominator
     return res;
   }
   
@@ -124,12 +125,31 @@ class Unit extends Array  {
   
   // serialize unit-object to string with TeX '\frac{mM^{2} L}{mg h^{2}}'
   toSbmlUnitDefinition(){
-    let units = this.toSbmlUnits(),
-        sbmlUnit = document.createDocumentFragment(), 
-        list = document.createElement("listOfUnitDefinitions");
+    let i, units = this.toSbmlUnits();
+        
+    let defUnit = document.implementation.createDocument(null, "unitDefinition");
     
-    sbmlUnit.appendChild(list);
-    return res;
+    //defUnit.setAttribute("id", this.toHash());    
+    
+    let id = defUnit.createAttribute("id"); 
+    id.nodeValue = this.toHash();
+    defUnit.childNodes[0].setAttributeNode(id);
+    
+    let listUnit = defUnit.createElement("listOfUnits");
+    
+    units.forEach(function(item){
+      let unit = defUnit.createElement("unit");
+      for (i in item) {
+        let attr = defUnit.createAttribute(i); 
+        attr.nodeValue = item[i];
+        unit.setAttributeNode(attr)
+        //unit.setAttribute(i, item[i]);
+      }
+      listUnit.appendChild(unit);
+    });
+        
+    defUnit.childNodes[0].appendChild(listUnit);
+    return defUnit;
   }
   
 }
