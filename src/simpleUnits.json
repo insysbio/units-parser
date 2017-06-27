@@ -24,8 +24,8 @@ simpleUnits = {
   "min":[{kind: "second", multiplier: 60}],
   "h":[{kind: "second", multiplier: 3600}],
   "day":[{kind: "second", multiplier: 86400}],
-  "month":[{kind: "second", multiplier: 60}],
-  "year":[{kind: "second", multiplier: 60}],
+  "month":[{kind: "second", multiplier: 2419200}],
+  "year":[{kind: "second", multiplier: 31558208}],
   
   "cell":[{kind: "item"}],
   "kcell":[{kind: "item", scale: 3}],

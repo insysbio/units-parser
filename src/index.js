@@ -92,15 +92,43 @@ class Unit extends Array  {
   
   // transform to sbml units
   toSbmlUnits(){
-    let res = "";
+    console.log("To sbml unit...");
+    let sbmlUnit = [], 
+    newUnit = {
+      kind: "",
+      multiplier: "",
+      scale: "",
+      exponent: ""
+    };
     
-    return res;
+    this.forEach(function(parseUnit) {
+      console.log(" Outer cycle. parseUnit is ", parseUnit);
+      simpleUnits[parseUnit.kind].forEach(function(simpleUnit) {
+        console.log("   Inner cycle. simpleUnit is ", simpleUnit);
+        console.log("     kind is", simpleUnit.kind);
+        console.log("     multiplier is ", simpleUnit.multiplier, "+", parseUnit.multiplier, "=",simpleUnit.multiplier || 1);
+        console.log("     scale is", simpleUnit.scale || 0);
+        console.log("     exponent is", simpleUnit.exponent, "*", parseUnit.exponent, "=", simpleUnit.exponent * parseUnit.exponent || parseUnit.exponent);
+        
+        sbmlUnit.push({
+          kind: simpleUnit.kind,
+          multiplier: simpleUnit.multiplier || 1,
+          scale: simpleUnit.scale || 0,
+          exponent: simpleUnit.exponent * parseUnit.exponent || parseUnit.exponent
+        });
+      });
+    });
+    
+    return sbmlUnit;
   }
   
   // serialize unit-object to string with TeX '\frac{mM^{2} L}{mg h^{2}}'
   toSbmlUnitDefinition(){
-    let res = "<unitDefinition></unitDefinition>";
+    let units = this.toSbmlUnits(),
+        sbmlUnit = document.createDocumentFragment(), 
+        list = document.createElement("listOfUnitDefinitions");
     
+    sbmlUnit.appendChild(list);
     return res;
   }
   

@@ -1,6 +1,9 @@
 examples = [ // and hash
   "L", // L
   "mg", // mg
+  "M", //M
+  "nM", //nM
+  "uM2",// uM2
   "L/mg", // mg
   "L*mg", // L_mg
   "mg^2/L^3", // mg2__L3

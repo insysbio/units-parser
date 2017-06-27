@@ -81,6 +81,14 @@ examples.forEach(function(item) {
     span.appendChild(document.createTextNode(un.toHash()));
     head.appendChild(span);
   container.appendChild(head);
+  
+  head = document.createElement("h3");
+  head.appendChild(document.createTextNode("Unit-object after conver to sbmlUnit"));
+  container.appendChild(head);
+
+  let sbmlUnitTextarea = document.createElement("textarea");
+  sbmlUnitTextarea.appendChild(document.createTextNode(JSON.stringify(un.toSbmlUnits(), null, 2)));
+  container.appendChild(sbmlUnitTextarea);
 
   container.appendChild(document.createElement("hr"));
 
