@@ -85,9 +85,44 @@ class Unit extends Array  {
   
   // serialize unit-object to string with TeX '\frac{mM^{2} \cdot L}{mg \cdot h^{2}}'
   toTex(){
-    let res = "";
-    //numerator
-    //denominator
+    console.log("To tex...");
+    let res = "", 
+        numerator = "", 
+        denominator = "", elem;
+        
+    this.forEach( function(item) {
+      console.log(" write ", item);
+      let elem =  "\\mathrm{"+item.kind+"}";
+      
+      if ((item.exponent != 1) && (item.exponent != -1)) {        
+        elem += "^{"+(Math.abs(item.exponent))+"}";
+      }
+      
+      if (item.exponent < 0) {
+        if (denominator != "") {
+          denominator += "\\cdot"+elem;
+        }  
+        else {
+          denominator += elem;
+        }
+      } else {
+        if (numerator != "") {
+          numerator += "\\cdot"+elem;
+        }  
+        else {
+          numerator += elem;
+        }
+      }
+    });
+    
+    if (denominator != "") {
+      if (numerator == "") numerator = "1"
+      res = "\\frac{"+numerator+"}{"+denominator+"}";
+    }
+    else {
+      res = numerator;
+    }
+    
     return res;
   }
   

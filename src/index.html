@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="style.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!--<script type="text/javascript" src="http://insilicobio.ru/mathjax/MathJax.js?config=TeX-MML-AM_CHTML"> </script>-->
+<script type="text/javascript" src="http://insilicobio.ru/mathjax/MathJax.js?config=TeX-MML-AM_HTMLorMML"> </script>
 </head>
 <body id="top">
 <div class="w3-container">
@@ -86,7 +86,6 @@ examples.forEach(function(item) {
   head = document.createElement("h3");
   head.appendChild(document.createTextNode("Unit-object after conver to sbmlUnit"));
   container.appendChild(head);
-
   let sbmlUnitTextarea = document.createElement("textarea");
   sbmlUnitTextarea.appendChild(document.createTextNode(JSON.stringify(un.toSbmlUnits(), null, 2)));
   container.appendChild(sbmlUnitTextarea);
@@ -94,10 +93,13 @@ examples.forEach(function(item) {
   head = document.createElement("h3");
   head.appendChild(document.createTextNode("Unit definition"));
   container.appendChild(head);
-
   let defUnitTextarea = document.createElement("textarea");
   defUnitTextarea.appendChild(document.createTextNode( stripDOM(new XMLSerializer().serializeToString(un.toSbmlUnitDefinition()))) );
   container.appendChild(defUnitTextarea);
+  
+  let math = document.createElement("div");
+  math.appendChild(document.createTextNode("$$"+un.toTex()+"$$"));
+  container.appendChild(math);
   
   container.appendChild(document.createElement("hr"));
 
