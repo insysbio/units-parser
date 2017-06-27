@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Testing conversion unit</title>
-<link rel="stylesheet" href="style.css"/>
+
 
 <!-- Load json -->
 <script src="sbmlUnits.json"></script>
@@ -14,51 +14,84 @@
 <script src="index.js"></script>
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body id="top">
+<div class="w3-container">
+<h1>Navigate</h1>
+<ul id="navigate" class="w3-ul w3-hoverable w3-border">
+</ul>
+</div>
+<hr/>
+<div id="content" class="w3-container">
+</div>
 
-<div id="content">
+<div>
+<p class="w3-bottom w3-padding">
+  <a href="#top" class="w3-right  w3-button w3-circle w3-blue-grey"><i class="fa fa-arrow-up"></i></a>
+</p>  
 </div>
 
 <script>
 'use strict'
-var content = document.getElementById("content"); 
+let content = document.getElementById("content"),
+    nav = document.getElementById("navigate"); 
 examples.forEach(function(item) {
-let un = Unit.parseFromString(item); 
+  let li = document.createElement("li");
+    let link = document.createElement("a");
+    link.setAttribute("href", "#"+item);
+    link.appendChild(document.createTextNode(item));
+    li.appendChild(link);
+  nav.appendChild(li);
 
-let container = document.createElement("div");
+  let un = Unit.parseFromString(item); 
 
-let head = document.createElement("h2");
-head.appendChild(document.createTextNode("Input "+item));
-container.appendChild(head);
+  let container = document.createElement("div");
 
-head = document.createElement("h3");
-head.appendChild(document.createTextNode("Unit-object after parse "));
-container.appendChild(head);
+  let head = document.createElement("h2");
+  head.setAttribute("id", item)
+  head.appendChild(document.createTextNode("Input "));
+    let span = document.createElement("span");
+    span.classList.add("w3-blue-gray", "w3-padding-small", "w3-large");
+    span.appendChild(document.createTextNode(item));
+    head.appendChild(span);
+  container.appendChild(head);
 
-let parseJsonUnit = document.createElement("textarea");
-parseJsonUnit.appendChild(document.createTextNode(JSON.stringify(un, null, 2)));
-container.appendChild(parseJsonUnit);
+  head = document.createElement("h3");
+  head.appendChild(document.createTextNode("Unit-object after parse "));
+  container.appendChild(head);
 
-head = document.createElement("h3");
-head.appendChild(document.createTextNode("Unit-object to string " + un.toString()));
-container.appendChild(head);
+  let parseJsonUnit = document.createElement("textarea");
+  parseJsonUnit.appendChild(document.createTextNode(JSON.stringify(un, null, 2)));
+  container.appendChild(parseJsonUnit);
 
-head = document.createElement("h3");
-head.appendChild(document.createTextNode("Unit-object hash " + un.toHash()));
-container.appendChild(head);
+  head = document.createElement("h3");
+  head.appendChild(document.createTextNode("Unit-object to string " ));
+    span = document.createElement("span");
+    span.classList.add("w3-blue-gray", "w3-padding-small", "w3-small");
+    span.appendChild(document.createTextNode(un.toString()));
+    head.appendChild(span);
+  container.appendChild(head);
 
-container.appendChild(document.createElement("hr"));
+  head = document.createElement("h3");
+  head.appendChild(document.createTextNode("Unit-object hash "));
+    span = document.createElement("span");
+    span.classList.add("w3-blue-gray", "w3-padding-small", "w3-small");
+    span.appendChild(document.createTextNode(un.toHash()));
+    head.appendChild(span);
+  container.appendChild(head);
 
-content.appendChild(container);
+  container.appendChild(document.createElement("hr"));
 
+  content.appendChild(container);
+});
 
 function stripJSON(cont) {
 	cont = cont.replace(/\n/g, "<br/>");
 	cont = cont.replace(/ /g, "&nbsp;");
 	return cont;
-}    
-});
+} 
 </script>
 </body>
 </html>

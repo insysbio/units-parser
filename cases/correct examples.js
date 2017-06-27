@@ -8,8 +8,7 @@ examples = [ // and hash
   "mg/L/s", // mg__L__s
   "mole/kg", // mole__kg
   "m^1.33/kg^2.2", // m1_33__kg2_2
-  "mmole2*L/s/Rg2*1/s",
-  "1/L",
-  "L*mole",
-  "mole/1/s"
+  "1/L", //__L
+  "L*mole", //L_mole,
+  "mmole2*L/s/kg2"
 ];
