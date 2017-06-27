@@ -39,7 +39,7 @@ parseJsonUnit.appendChild(document.createTextNode(JSON.stringify(un, null, 2)));
 container.appendChild(parseJsonUnit);
 
 head = document.createElement("h3");
-head.appendChild(document.createTextNode("Unit-object to string "));
+head.appendChild(document.createTextNode("Unit-object to string " + un.toString()));
 container.appendChild(head);
 
 head = document.createElement("h3");

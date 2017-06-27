@@ -20,7 +20,7 @@ class Unit {
       console.log("elementes of unit ", item[0], item.search(/1\//), item.match(/[A-Za-z]+/), item.match(/[\d.]+$/));
     
     unit[i] = {
-      op: item.match(/[$\/*]/) && item.match(/[$\/*]/)[0],
+      op: item.match(/^[\/*]/) && item.match(/^[$\/*]/)[0],
       kind: item.match(/[A-Za-z]+/)[0],
       exponent: ((item.search(/1\//) != -1) && (item[0] == "/"))  ? 1 : (
                 ((item.search(/1\//) != -1) || (item[0] == "/")) ? -1 : 1),
@@ -33,12 +33,31 @@ class Unit {
   
   // serialize unit-object to string of type 'mM^2*L/mg/h^2' is the same as 'mM2*L/mg/h2'
   toString(){
+    console.log("to string");
+    
     let item, res = "";
     
-    console.log("To string...");
     for (item in this) {
+      console.log(" add hash ", this[item]);
       
+      if (this[item].op == "*") {
+        res += "*";
+      } else if (this[item].op == "/") {
+        res += "/";
+      }
+      console.log("after add op", res);
+      
+      if (((this[item].op == "/") && (this[item].exponent == 1)) || ((this[item].op != "/") && (this[item].exponent == -1))) {
+        res += "1/";
+      }
+      
+      res += this[item].kind;
+      
+      if (this[item].scale) {
+        res += this[item].scale;
+      }
     }
+    
     return res;
   }
   
@@ -58,18 +77,15 @@ class Unit {
       }
       console.log("after add op", res);
       
-      if ((this[item].op == "/") && (this[item].exponent = 1)) {
+      if (((this[item].op == "/") && (this[item].exponent == 1)) || ((this[item].op != "/") && (this[item].exponent == -1))) {
         res += "1__";
       }
-      console.log("after check 1/s", res);
       
       res += this[item].kind;
-      console.log("after add kind", res);
       
       if (this[item].scale) {
         res += this[item].scale;
       }
-      console.log("after check scale", res);
     }
     
     return res;
