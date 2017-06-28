@@ -10,6 +10,7 @@
 
 <!-- Load example -->
 <script src="../cases/correct examples.js"></script>
+<script src="../cases/incorrect examples.js"></script>
 
 <script src="index.js"></script>
 
@@ -36,76 +37,84 @@
 </div>
 <script>
 'use strict'
-let content = document.getElementById("content"),
-    nav = document.getElementById("navigate"); 
-examples.forEach(function(item) {
-  let li = document.createElement("li");
-    let link = document.createElement("a");
-    link.setAttribute("href", "#"+item);
-    link.appendChild(document.createTextNode(item));
-    li.appendChild(link);
-  nav.appendChild(li);
+create_content(examples, "w3-green");
+create_content(incorExamples, "w3-red");
+function create_content(exampleList, navigateStyle){
+  let content = document.getElementById("content"),
+      nav = document.getElementById("navigate"); 
+  exampleList.forEach(function(item) {
+    let li = document.createElement("li");
+      li.classList.add(navigateStyle);
+      let link = document.createElement("a");
+      link.setAttribute("href", "#"+item);
+      link.appendChild(document.createTextNode(item));
+      li.appendChild(link);
+    nav.appendChild(li);
 
-  let un = Unit.parseFromString(item); 
+    let un = Unit.parseFromString(item); 
 
-  let container = document.createElement("div");
+    let container = document.createElement("div");
 
-  let head = document.createElement("h2");
-  head.setAttribute("id", item)
-  head.appendChild(document.createTextNode("Input "));
-    let span = document.createElement("span");
-    span.classList.add("w3-blue-gray", "w3-padding-small", "w3-large");
-    span.appendChild(document.createTextNode(item));
-    head.appendChild(span);
-  container.appendChild(head);
+    let head = document.createElement("h2");
+    head.setAttribute("id", item)
+    head.appendChild(document.createTextNode("Input "));
+      let span = document.createElement("span");
+      span.classList.add("w3-blue-gray", "w3-padding-small", "w3-large");
+      span.appendChild(document.createTextNode(item));
+      head.appendChild(span);
+    container.appendChild(head);
 
-  head = document.createElement("h3");
-  head.appendChild(document.createTextNode("Unit-object after parse "));
-  container.appendChild(head);
+    head = document.createElement("h3");
+    head.appendChild(document.createTextNode("Unit-object after parse "));
+    container.appendChild(head);
 
-  let parseJsonUnit = document.createElement("textarea");
-  parseJsonUnit.appendChild(document.createTextNode(JSON.stringify(un, null, 2)));
-  container.appendChild(parseJsonUnit);
+    let parseJsonUnit = document.createElement("textarea");
+    parseJsonUnit.appendChild(document.createTextNode(JSON.stringify(un, null, 2)));
+    container.appendChild(parseJsonUnit);
 
-  head = document.createElement("h3");
-  head.appendChild(document.createTextNode("Unit-object to string " ));
-    span = document.createElement("span");
-    span.classList.add("w3-blue-gray", "w3-padding-small", "w3-small");
-    span.appendChild(document.createTextNode(un.toString()));
-    head.appendChild(span);
-  container.appendChild(head);
+    head = document.createElement("h3");
+    head.appendChild(document.createTextNode("Unit-object to string " ));
+      span = document.createElement("span");
+      span.classList.add("w3-blue-gray", "w3-padding-small", "w3-small");
+      span.appendChild(document.createTextNode(un.toString()));
+      head.appendChild(span);
+    container.appendChild(head);
 
-  head = document.createElement("h3");
-  head.appendChild(document.createTextNode("Unit-object hash "));
-    span = document.createElement("span");
-    span.classList.add("w3-blue-gray", "w3-padding-small", "w3-small");
-    span.appendChild(document.createTextNode(un.toHash()));
-    head.appendChild(span);
-  container.appendChild(head);
-  
-  head = document.createElement("h3");
-  head.appendChild(document.createTextNode("Unit-object after conver to sbmlUnit"));
-  container.appendChild(head);
-  let sbmlUnitTextarea = document.createElement("textarea");
-  sbmlUnitTextarea.appendChild(document.createTextNode(JSON.stringify(un.toSbmlUnits(), null, 2)));
-  container.appendChild(sbmlUnitTextarea);
-  
-  head = document.createElement("h3");
-  head.appendChild(document.createTextNode("Unit definition"));
-  container.appendChild(head);
-  let defUnitTextarea = document.createElement("textarea");
-  defUnitTextarea.appendChild(document.createTextNode( stripDOM(new XMLSerializer().serializeToString(un.toSbmlUnitDefinition()))) );
-  container.appendChild(defUnitTextarea);
-  
-  let math = document.createElement("div");
-  math.appendChild(document.createTextNode("$$"+un.toTex()+"$$"));
-  container.appendChild(math);
-  
-  container.appendChild(document.createElement("hr"));
+    head = document.createElement("h3");
+    head.appendChild(document.createTextNode("Unit-object hash "));
+      span = document.createElement("span");
+      span.classList.add("w3-blue-gray", "w3-padding-small", "w3-small");
+      span.appendChild(document.createTextNode(un.toHash()));
+      head.appendChild(span);
+    container.appendChild(head);
+    
+    head = document.createElement("h3");
+    head.appendChild(document.createTextNode("Unit-object after conver to sbmlUnit"));
+    container.appendChild(head);
+    let sbmlUnitTextarea = document.createElement("textarea");
+    sbmlUnitTextarea.appendChild(document.createTextNode(JSON.stringify(un.toSbmlUnits(), null, 2)));
+    container.appendChild(sbmlUnitTextarea);
+    
+    head = document.createElement("h3");
+    head.appendChild(document.createTextNode("Unit definition"));
+    container.appendChild(head);
+    let defUnitTextarea = document.createElement("textarea");
+    let sbmlUnit = un.toSbmlUnitDefinition();
+    if (typeof(sbmlUnit) != "string")
+      defUnitTextarea.appendChild(document.createTextNode( stripDOM(new XMLSerializer().serializeToString(sbmlUnit))) );
+    else  
+      defUnitTextarea.appendChild(document.createTextNode(sbmlUnit));
+    container.appendChild(defUnitTextarea);
+    
+    let math = document.createElement("div");
+    math.appendChild(document.createTextNode("$$"+un.toTex()+"$$"));
+    container.appendChild(math);
+    
+    container.appendChild(document.createElement("hr"));
 
-  content.appendChild(container);
-});
-
+    content.appendChild(container);
+  });
+}
 function stripDOM(cont) {
 	cont = cont.replace(/></g, ">\n<");
 	return cont;

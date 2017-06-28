@@ -9,32 +9,68 @@ class Unit extends Array  {
   static parseFromString(str) {
     let unit = new Unit();
     
-    console.log("Parse string...");
+    console.log("Parse string ", str, "...");
     
     let items = str.match(/([*/]?(1\/)?[A-Za-z]+[\^]?[\d.]*)/g);
     console.log(" Units and op into str", items);
     
     console.log(" Check connect list of units:", simpleUnits);
-    
+    let l = 0, lstr = "";
     items.forEach(function (item) {
       console.log("elementes of unit ", item[0], item.search(/1\//), item.match(/[A-Za-z]+/), item.match(/[\d.]+$/));
-    
+      
+      
+      
+      let kind = item.match(/[A-Za-z]+/)[0],
+          pow = item.match(/[\d.]+$/) && item.match(/[\d.]+$/)[0],
+          exponent = (((item.search(/1\//) != -1) && (item[0] == "/"))  ? 1 : (
+                  ((item.search(/1\//) != -1) || (item[0] == "/")) ? -1 : 1)) * (pow || 1);
+      
+      //validate
+      l += item.length;
+      lstr += item;
+      if (kind.match(/^[A-Za-z]+$/) == -1) {
+        writeEr("error: wrong syntax");
+        return unit;
+      }
+      if (!(simpleUnits[kind])) {
+        writeEr("error: unknown unit " + kind);
+        return unit;
+       }
+       console.log(pow);
+       if (String(pow).match(/^[\d]+(.[\d]+)*/)) {
+        writeEr("error: require number before"); 
+        return unit;
+       }
+      
       unit.push({
-        kind: item.match(/[A-Za-z]+/)[0],
-        exponent: (((item.search(/1\//) != -1) && (item[0] == "/"))  ? 1 : (
-                  ((item.search(/1\//) != -1) || (item[0] == "/")) ? -1 : 1)) * ((item.match(/[\d.]+$/) && item.match(/[\d.]+$/)[0]) || 1),
+        "kind": kind,
+        "exponent": exponent,
         scale: 0,
         multiplier: 1
       });
     });
     
-    console.log("res", unit);
+    console.log("res", unit, l, str.length, str, lstr);
+    if (l != str.length) {
+      writeEr("error: wrong syntax");
+      return unit;
+    }
+    
     return unit;
+    
+    
+    
+    function writeEr(mess){
+      unit.length = 0;
+      unit.push(mess);
+    }
   };
-  
+
   // serialize unit-object to string of type 'mM^2*L/mg/h^2' is the same as 'mM2*L/mg/h2'
   toString(){
     console.log("to string...");
+    if (typeof(this[0]) == "string") return this[0];  
     
     let res = "";
     
@@ -60,7 +96,9 @@ class Unit extends Array  {
   
   // serialize unit-object to string of type 'mM2_L__mg__h2'
   toHash(){
-    console.log("to Hash");    
+    console.log("to Hash");  
+    if (typeof(this[0]) == "string") return this[0];  
+        
     let res = "";
     
     this.forEach( function(item){
@@ -85,7 +123,9 @@ class Unit extends Array  {
   
   // serialize unit-object to string with TeX '\frac{mM^{2} \cdot L}{mg \cdot h^{2}}'
   toTex(){
-    console.log("To tex...");
+    console.log("To tex...");    
+    if (typeof (this[0]) == "string") return this[0];  
+    
     let res = "", 
         numerator = "", 
         denominator = "", elem;
@@ -129,6 +169,9 @@ class Unit extends Array  {
   // transform to sbml units
   toSbmlUnits(){
     console.log("To sbml unit...");
+    
+    if (typeof(this[0]) == "string") return this[0];  
+    
     let sbmlUnit = [], 
     newUnit = {
       kind: "",
@@ -160,6 +203,8 @@ class Unit extends Array  {
   
   // serialize unit-object to string with TeX '\frac{mM^{2} L}{mg h^{2}}'
   toSbmlUnitDefinition(){
+    if (typeof (this[0]) == "string") return this[0];  
+    
     let i, units = this.toSbmlUnits();
         
     let defUnit = document.implementation.createDocument(null, "unitDefinition");
