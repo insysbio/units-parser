@@ -11,11 +11,16 @@ class Unit extends Array  {
     
     console.log("Parse string ", str, "...");
     
-    let items = str.match(/([*/]?(1\/)?[A-Za-z]+[\^]?[\d.]*)/g);
+    let items = str.match(/(^(1\/)?[A-Za-z]+[\^]?[\d.]*)|([*/][A-Za-z]+[\^]?[\d.]*)/g);
     console.log(" Units and op into str", items);
     
     console.log(" Check connect list of units:", simpleUnits);
     let l = 0, lstr = "";
+    
+    if (!(items)) {
+      writeEr("error: wrong syntax");
+      return unit;
+    }
     items.forEach(function (item) {
       console.log("elementes of unit ", item[0], item.search(/1\//), item.match(/[A-Za-z]+/), item.match(/[\d.]+$/));
       
@@ -37,8 +42,8 @@ class Unit extends Array  {
         writeEr("error: unknown unit " + kind);
         return unit;
        }
-       console.log(pow);
-       if (String(pow).match(/^[\d]+(.[\d]+)*/)) {
+       console.log("pow is", pow);
+       if (!(String(pow).match(/^[\d]+(.[\d]+)*/)) && (pow != null)) {
         writeEr("error: require number before"); 
         return unit;
        }
