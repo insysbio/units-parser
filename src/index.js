@@ -137,7 +137,7 @@ class Unit extends Array  {
         
     this.forEach( function(item) {
       console.log(" write ", item);
-      let elem =  "\\mathrm{"+item.kind+"}";
+      let elem =  item.kind;
       
       if ((item.exponent != 1) && (item.exponent != -1)) {        
         elem += "^{"+(Math.abs(item.exponent))+"}";
@@ -145,14 +145,14 @@ class Unit extends Array  {
       
       if (item.exponent < 0) {
         if (denominator != "") {
-          denominator += "\\cdot"+elem;
+          denominator += " \\cdot "+elem;
         }  
         else {
           denominator += elem;
         }
       } else {
         if (numerator != "") {
-          numerator += "\\cdot"+elem;
+          numerator += " \\cdot "+elem;
         }  
         else {
           numerator += elem;
@@ -168,6 +168,7 @@ class Unit extends Array  {
       res = numerator;
     }
     
+    console.log("Text res:", res);
     return res;
   }
   
