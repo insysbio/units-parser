@@ -22,6 +22,7 @@
 </head>
 <body id="top">
 <div class="w3-container">
+<span class="w3-button w3-circle"><a href="#calculate"><i class="fa fa-calculator w3-large" aria-hidden="true"></i></a></span>
 <h1>Navigate</h1>
 <ul id="navigate" class="w3-ul w3-hoverable w3-border">
 </ul>
@@ -35,13 +36,42 @@
   <a href="#top" class="w3-right  w3-button w3-circle w3-blue-grey"><i class="fa fa-arrow-up"></i></a>
 </p>  
 </div>
+
+<div id="calculate" class="w3-container w3-margin" style="padding-bottom: 60px">
+<div class="w3-row-padding">
+  <div class="w3-quarter">
+    <select id="unit1" class="w3-select w3-border">
+      <option value="">unit1</option>
+    </select>
+  </div>
+  <div class="w3-quarter">
+    <select id="op" class="w3-select w3-border">
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select>
+  </div>
+  <div class="w3-quarter">
+    <select id="unit2" class="w3-select w3-border">
+      <option value="">unit2</option>
+      </select> 
+  </div>  
+  <div class="w3-quarter">
+   <span class="w3-button w3-circle" onclick="calculate()"><i class="fa fa-calculator w3-xxlarge"></i></span>
+  </div>
+</div>
+<div id="resultCalculate">
+</div>
+</div>
 <script>
 'use strict'
 create_content(examples, "w3-green");
 create_content(incorExamples, "w3-red");
 function create_content(exampleList, navigateStyle){
   let content = document.getElementById("content"),
-      nav = document.getElementById("navigate"); 
+      nav = document.getElementById("navigate"),
+      listCalc1 = document.getElementById("unit1"), 
+      listCalc2 = document.getElementById("unit2"); 
+
   exampleList.forEach(function(item) {
     let li = document.createElement("li");
       li.classList.add(navigateStyle);
@@ -51,16 +81,26 @@ function create_content(exampleList, navigateStyle){
       li.appendChild(link);
     nav.appendChild(li);
 
-    let un = Unit.parseFromString(item); 
+    let option = document.createElement("option");
+      option.appendChild(document.createTextNode(item));
+      option.setAttribute("value", item)
+      listCalc1.appendChild(option);
+      listCalc2.appendChild(option.cloneNode(true));
+
+    createInformationBlock(content, item, Unit.parseFromString(item));
+  });
+}
+
+function createInformationBlock(content, title, un) { 
 
     let container = document.createElement("div");
 
     let head = document.createElement("h2");
-    head.setAttribute("id", item)
+    head.setAttribute("id", title)
     head.appendChild(document.createTextNode("Input "));
       let span = document.createElement("span");
       span.classList.add("w3-blue-gray", "w3-padding-small", "w3-large");
-      span.appendChild(document.createTextNode(item));
+      span.appendChild(document.createTextNode(title));
       head.appendChild(span);
     container.appendChild(head);
 
@@ -113,12 +153,41 @@ function create_content(exampleList, navigateStyle){
     container.appendChild(document.createElement("hr"));
 
     content.appendChild(container);
-  });
 }
 function stripDOM(cont) {
 	cont = cont.replace(/></g, ">\n<");
 	return cont;
 } 
+
+function calculate() {
+  console.log("Start calc");
+  let unit1 = Unit.parseFromString(document.getElementById("unit1").value);
+  let unit2 = Unit.parseFromString(document.getElementById("unit2").value);
+  let content = document.getElementById("resultCalculate");
+  let newUnit;
+
+  if (document.getElementById("op").value == "*") {
+    newUnit = unit1.multiply(unit2);
+  }
+  else {
+    newUnit = unit1.divide(unit2);
+  }
+  let nameOp = document.getElementById("op").value == "*" ? 'multiply' : 'divide';
+  let title = document.getElementById("unit1").value + " " + nameOp + " " + document.getElementById("unit2").value;
+
+  content.innerHTML = "";
+
+  createInformationBlock(content, title, newUnit);
+
+  MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+
+  console.log("End calc");
+
+
+}
+
 </script>
+
+
 </body>
 </html>

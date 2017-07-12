@@ -207,6 +207,73 @@ class Unit extends Array  {
     return sbmlUnit;
   }
   
+  multiply(unit) {
+   return this.concat(unit);
+  }
+
+  divide(unit) {
+   unit.forEach(function(item) {
+      item.exponent *= -1;
+   }); 
+   return this.concat(unit);
+  }
+
+  /*simpify() {
+   let listOfKind = [],
+        newAr = this;
+
+  console.log("Edit array is", newAr);
+
+   newAr.forEach(function(item, i) {
+    console.log("item is ", item.kind);
+
+    let posElement = listOfKind.indexOf(item.kind + (parseInt(item.exponent) > 0 ? "-" : "+"));
+    console.log(posElement);
+
+    if (posElement != -1) {
+      console.log("Find alement for simpify on position", posElement);
+      item.exponent += newAr[posElement].exponent;
+      if (item.exponent == 0) newAr.splice(i, 1);
+
+      listOfKind.splice(posElement, 1);
+      newAr.splice(posElement, 1);
+    }
+
+    listOfKind.push(item.kind+(parseInt(item.exponent) < 0 ? "-" : "+"));
+    console.log("listOfKind: ", listOfKind);
+   }); 
+
+   return newAr;
+  }*/
+
+simpify() {
+   let listOfKind = [],
+        newAr = this;
+
+  console.log("Edit array is", newAr);
+
+   newAr.forEach(function(item, i) {
+    console.log("item is ", item.kind);
+
+    let posElement = listOfKind.indexOf(item.kind);
+    console.log(posElement);
+
+    if (posElement != -1) {
+      console.log("Find alement for simpify on position", posElement);
+      item.exponent += newAr[posElement].exponent;
+      if (item.exponent == 0) newAr.splice(i - 1, 1);
+
+      listOfKind.splice(posElement, 1);
+      newAr.splice(posElement, 1);
+    }
+
+    listOfKind.push(item.kind);
+    console.log("listOfKind: ", listOfKind);
+   }); 
+
+   return newAr;
+  }
+
   // serialize unit-object to string with TeX '\frac{mM^{2} L}{mg h^{2}}'
   toSbmlUnitDefinition(){
     if (typeof (this[0]) == "string") return this[0];  
