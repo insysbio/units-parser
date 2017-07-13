@@ -218,59 +218,35 @@ class Unit extends Array  {
    return this.concat(unit);
   }
 
-  /*simpify() {
+  simpify() {
    let listOfKind = [],
-        newAr = this;
+        newAr = Array.from(this),
+        i = 0;
 
   console.log("Edit array is", newAr);
 
-   newAr.forEach(function(item, i) {
-    console.log("item is ", item.kind);
+   /*newAr.forEach(function(item, i) {
+    
+   });*/ 
+   while ( i < newAr.length) {
 
-    let posElement = listOfKind.indexOf(item.kind + (parseInt(item.exponent) > 0 ? "-" : "+"));
-    console.log(posElement);
-
-    if (posElement != -1) {
-      console.log("Find alement for simpify on position", posElement);
-      item.exponent += newAr[posElement].exponent;
-      if (item.exponent == 0) newAr.splice(i, 1);
-
-      listOfKind.splice(posElement, 1);
-      newAr.splice(posElement, 1);
-    }
-
-    listOfKind.push(item.kind+(parseInt(item.exponent) < 0 ? "-" : "+"));
-    console.log("listOfKind: ", listOfKind);
-   }); 
-
-   return newAr;
-  }*/
-
-simpify() {
-   let listOfKind = [],
-        newAr = this;
-
-  console.log("Edit array is", newAr);
-
-   newAr.forEach(function(item, i) {
-    console.log("item is ", item.kind);
-
-    let posElement = listOfKind.indexOf(item.kind);
-    console.log(posElement);
+    let posElement = listOfKind.indexOf(newAr[i].kind);
 
     if (posElement != -1) {
-      console.log("Find alement for simpify on position", posElement);
-      item.exponent += newAr[posElement].exponent;
-      if (item.exponent == 0) newAr.splice(i - 1, 1);
-
+      newAr[i].exponent += newAr[posElement].exponent;  
       listOfKind.splice(posElement, 1);
       newAr.splice(posElement, 1);
+
+      i--;
+    }    
+    if (newAr[i].exponent == 0) {
+        newAr.splice(i, 1)
+        i--;
     }
-
-    listOfKind.push(item.kind);
-    console.log("listOfKind: ", listOfKind);
-   }); 
-
+    else       
+       listOfKind.push(newAr[i].kind);
+    i++;
+   } 
    return newAr;
   }
 
