@@ -150,7 +150,20 @@ function createInformationBlock(content, title, un) {
     math.appendChild(document.createTextNode("$$"+un.toTex()+"$$"));
     container.appendChild(math);
     
-    container.appendChild(document.createElement("hr"));
+   
+
+    /*Simp*/
+
+    let simpDiv = document.createElement("div");
+    let simpBtn = document.createElement("span");
+    simpBtn.classList.add("w3-button",  "w3-blue-grey", "w3-round");
+    simpBtn.appendChild(document.createTextNode("Simpify"));
+    simpBtn.setAttribute("onclick", "simp(event, '"+String(title)+"')");
+    simpDiv.appendChild(simpBtn);
+    simpDiv.appendChild(document.createElement("div"));
+    container.appendChild(simpDiv);
+
+     container.appendChild(document.createElement("hr"));
 
     content.appendChild(container);
 }
@@ -172,18 +185,25 @@ function calculate() {
   else {
     newUnit = unit1.divide(unit2);
   }
-  let nameOp = document.getElementById("op").value == "*" ? 'multiply' : 'divide';
-  let title = document.getElementById("unit1").value + " " + nameOp + " " + document.getElementById("unit2").value;
+  //let nameOp = document.getElementById("op").value == "*" ? 'multiply' : 'divide';
+  let title = document.getElementById("unit1").value + document.getElementById("op").value + document.getElementById("unit2").value;
 
   content.innerHTML = "";
 
-  createInformationBlock(content, title, newUnit);
+  createInformationBlock(content, newUnit.toString(), newUnit);
 
   MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
   console.log("End calc");
 
 
+}
+
+function simp(event, nameUnit) {
+  event.target.nextSibling.innerHTML = "";
+  createInformationBlock(event.target.nextSibling, nameUnit, Unit.parseFromString(nameUnit).simpify());
+
+MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 }
 
 </script>

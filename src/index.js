@@ -220,7 +220,7 @@ class Unit extends Array  {
 
   simpify() {
    let listOfKind = [],
-        newAr = Array.from(this),
+        newAr = Object.assign(this),
         i = 0;
 
   console.log("Edit array is", newAr);
@@ -246,6 +246,16 @@ class Unit extends Array  {
     else       
        listOfKind.push(newAr[i].kind);
     i++;
+   }
+
+   if (newAr.length == 0) {
+    console.log("empty newAr");
+    newAr.push({
+      kind: "dl",
+      exponent: 1,
+      scale: 0,
+      multiplier: 1
+    });
    } 
    return newAr;
   }
