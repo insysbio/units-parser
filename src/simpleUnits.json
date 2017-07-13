@@ -58,6 +58,7 @@ simpleUnits = {
   "nm":[{"kind":"metre", "scale": -9}],
   "um":[{"kind":"metre", "scale": -6}],
   "mm":[{"kind":"metre", "scale": -3}],
+  "cm":[{"kind":"metre", "scale": -2}],
   "m":[{"kind":"metre"}],
   
   "dimensionless": [{"kind": "dimensionless"}],
