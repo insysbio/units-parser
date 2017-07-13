@@ -221,37 +221,26 @@ class Unit extends Array  {
   }
 
   simplify() {
-   let listOfKind = [],
-        newAr = Object.assign({}, this),
-        i = 0;
+   let listOfKind = [], 
+      newUnit = new Unit();
 
-  console.log("Edit array is", newAr);
-
-   /*newAr.forEach(function(item, i) {
+    this.forEach(function(item) {
+      let current = Object.assign({},item),
+          posElement = listOfKind.indexOf(current.kind);
+      
+      if (posElement != -1) {
+        current.exponent += newUnit[posElement].exponent;  
+        listOfKind.splice(posElement, 1);
+        newUnit.splice(posElement, 1);        
+      }
+      
+      if (current.exponent != 0) {        
+        listOfKind.push(current.kind);
+        newUnit.push(current);
+      }
+    });
     
-   });*/ 
-   while ( i < newAr.length) {
-
-    let posElement = listOfKind.indexOf(newAr[i].kind);
-
-    if (posElement != -1) {
-      newAr[i].exponent += newAr[posElement].exponent;  
-      listOfKind.splice(posElement, 1);
-      newAr.splice(posElement, 1);
-
-      i--;
-    }    
-    if (newAr[i].exponent == 0) {
-        newAr.splice(i, 1)
-        i--;
-    }
-    else       
-       listOfKind.push(newAr[i].kind);
-    i++;
-   }
-
-   if (newAr.length == 0) {
-    console.log("empty newAr");
+  if (newUnit.length == 0) {
     newAr.push({
       kind: "dl",
       exponent: 1,
@@ -259,7 +248,8 @@ class Unit extends Array  {
       multiplier: 1
     });
    } 
-   return newAr;
+   
+   return newUnit;
   }
 
   // serialize unit-object to string with TeX '\frac{mM^{2} L}{mg h^{2}}'

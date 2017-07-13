@@ -157,7 +157,7 @@ function createInformationBlock(content, title, un) {
     let simpDiv = document.createElement("div");
     let simpBtn = document.createElement("span");
     simpBtn.classList.add("w3-button",  "w3-blue-grey", "w3-round");
-    simpBtn.appendChild(document.createTextNode("Simpify"));
+    simpBtn.appendChild(document.createTextNode("simplify"));
     simpBtn.setAttribute("onclick", "simp(event, '"+String(title)+"')");
     simpDiv.appendChild(simpBtn);
     simpDiv.appendChild(document.createElement("div"));
@@ -201,7 +201,7 @@ function calculate() {
 
 function simp(event, nameUnit) {
   event.target.nextSibling.innerHTML = "";
-  createInformationBlock(event.target.nextSibling, nameUnit, Unit.parseFromString(nameUnit).simpify());
+  createInformationBlock(event.target.nextSibling, nameUnit, Unit.parseFromString(nameUnit).simplify());
 
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 }
