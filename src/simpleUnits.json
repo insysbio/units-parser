@@ -39,19 +39,19 @@ simpleUnits = {
   "us": [{"kind": "second", "scale": -6}],
   "ms": [{"kind": "second", "scale": -3}],
   "s":  [{"kind": "second"}],
-  "min":[{"kind": "second", multiplier: 60}],
-  "h":  [{"kind": "second", multiplier: 3600}],
-  "day":[{"kind": "second", multiplier: 86400}],
-  "week":[{"kind": "second", multiplier: 604800}],
-  "year":[{"kind": "second", multiplier: 31558208}],
+  "min":[{"kind": "second", "multiplier": 60}],
+  "h":  [{"kind": "second", "multiplier": 3600}],
+  "day":[{"kind": "second", "multiplier": 86400}],
+  "week":[{"kind": "second", "multiplier": 604800}],
+  "year":[{"kind": "second", "multiplier": 31558208}],
   
   "kat": [{"kind": "katal"}],
   
   "cell": [{"kind": "item"}],
   "kcell":[{"kind": "item", "scale": 3}],
   
-  "cal": [{"kind": "joule", multiplier: 4.1868}],
-  "kcal":[{"kind": "joule", multiplier: 4.1868, "scale": 3}],
+  "cal": [{"kind": "joule", "multiplier": 4.1868}],
+  "kcal":[{"kind": "joule", "multiplier": 4.1868, "scale": 3}],
   
   "fm":[{"kind":"metre", "scale": -15}],
   "pm":[{"kind":"metre", "scale": -12}],
