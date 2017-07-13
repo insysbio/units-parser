@@ -212,15 +212,16 @@ class Unit extends Array  {
   }
 
   divide(unit) {
-   unit.forEach(function(item) {
+   let newUnit = Object.assign({}, unit);
+   newUnit.forEach(function(item) {
       item.exponent *= -1;
    }); 
-   return this.concat(unit);
+   return this.concat(newUnit);
   }
 
   simpify() {
    let listOfKind = [],
-        newAr = Object.assign(this),
+        newAr = Object.assign({}, this),
         i = 0;
 
   console.log("Edit array is", newAr);
