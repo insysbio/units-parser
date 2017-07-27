@@ -23,6 +23,7 @@ simpleUnits = {
   "nL":[{"kind":"litre", "scale": -9}],
   "uL":[{"kind":"litre", "scale": -6}],
   "mL":[{"kind":"litre", "scale": -3}],
+  "dL":[{"kind":"litre", "scale": -1}],
   "L": [{"kind":"litre"}],
   
   "fg":[{"kind":"gram", "scale": -15}],
@@ -61,9 +62,9 @@ simpleUnits = {
   "cm":[{"kind":"metre", "scale": -2}],
   "m":[{"kind":"metre"}],
   
-  "dimensionless": [{"kind": "dimensionless"}],
-  
+  "UL": [{"kind": "dimensionless"}],
   "item":[{"kind": "item"}],
+  "percent": [{"kind": "dimensionless", "scale": -2}],
   
   "cd":[{"kind":"candela"}],
   "Pa":[{"kind":"pascal"}],
