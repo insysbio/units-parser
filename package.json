@@ -1,19 +1,28 @@
 {
-  "name": "phys-unit-parser",
+  "name": "unit-parser",
   "version": "0.1.0",
-  "description": "Manipulations of physical units.",
+  "description": "Parsing and transformation of units of measurements.",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha",
     "doc": "jsdoc -r -c .jsdoc.json --readme README.md -d docs src"
   },
   "keywords": [
-    "physics",
+    "SBML",
     "systems biology",
+    "QSP"
     "units"
   ],
-  "author": "Evgeny Metelkin",
-  "license": "Apache-2.0",
+  "repository": "github:insysbio/unit-parser",
+  "bugs": {
+    "url": "https://github.com/insysbio/unit-parser/issues",
+    "email": "dev@insysbio.com"
+  },
+  "contributors": [
+    "Victoria Tkachenko",
+    "Evgeny Metelkin"
+  ],
+  "license": "MIT",
   "devDependencies": {
     "jsdoc": "^3.5.5",
     "mocha": "^5.2.0"
