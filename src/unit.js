@@ -191,7 +191,7 @@ module.exports = class Unit extends Array {
       : ` name="${this.toString()}"`;
     let unitDefinition = `<unitDefinition id="${this.toHash()}"${name}>\n  <listOfUnits>`
       + listOfUnits
-      + `\n  <listOfUnits/>\n<unitDefinition/>`;
+      + `\n  </listOfUnits>\n</unitDefinition>`;
     return unitDefinition;
   }
 
