@@ -2,7 +2,7 @@
   "name": "units-parser",
   "version": "0.1.0",
   "description": "Parsing and transformation of units of measurements.",
-  "main": "src/index.js",
+  "main": "src",
   "scripts": {
     "test": "mocha",
     "doc": "jsdoc -r -c .jsdoc.json --readme README.md -d docs src"
