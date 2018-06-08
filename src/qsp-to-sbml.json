@@ -1,5 +1,4 @@
-
-simpleUnits = {
+{
   "fmole":[{"kind":"mole", "scale": -15}],
   "pmole":[{"kind":"mole", "scale": -12}],
   "nmole":[{"kind":"mole", "scale": -9}],
@@ -93,4 +92,4 @@ simpleUnits = {
   "Hz":[{"kind":"hertz"}],
   "sr":[{"kind":"steradian"}],
   "rad":[{"kind":"radian"}]
-};
+}

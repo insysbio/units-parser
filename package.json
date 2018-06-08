@@ -1,0 +1,21 @@
+{
+  "name": "phys-unit-parser",
+  "version": "0.1.0",
+  "description": "Manipulations of physical units.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha",
+    "doc": "jsdoc -r -c .jsdoc.json --readme README.md -d docs src"
+  },
+  "keywords": [
+    "physics",
+    "systems biology",
+    "units"
+  ],
+  "author": "Evgeny Metelkin",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "jsdoc": "^3.5.5",
+    "mocha": "^5.2.0"
+  }
+}

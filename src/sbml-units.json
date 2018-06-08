@@ -1,6 +1,6 @@
-sbmlUnits = [
+[
   "ampere", "coulomb", "gray", "joule", "litre", "mole", "radian", "steradian", "weber",
   "avogadro", "dimensionless", "henry", "katal", "lumen", "newton", "second", "tesla",
   "becquerel", "farad", "hertz", "kelvin", "lux", "ohm", "siemens", "volt",
   "candela", "gram", "item", "kilogram", "metre", "pascal", "sievert", "watt"
-];
+]
