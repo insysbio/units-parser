@@ -1,9 +1,9 @@
 'use strict';
 
 const assert = require('assert');
-const {UnitParser} = require('../src');
+const {UnitsParser} = require('../src');
 const qspUnits = require('../src/qsp-units');
-const parser = new UnitParser(qspUnits);
+const parser = new UnitsParser(qspUnits);
 
 let incorrectUnits = [
   {str0: "1L", errorType: SyntaxError},

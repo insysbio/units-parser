@@ -1,5 +1,5 @@
 {
-  "name": "unit-parser",
+  "name": "units-parser",
   "version": "0.1.0",
   "description": "Parsing and transformation of units of measurements.",
   "main": "src/index.js",
@@ -10,12 +10,12 @@
   "keywords": [
     "SBML",
     "systems biology",
-    "QSP"
+    "QSP",
     "units"
   ],
-  "repository": "github:insysbio/unit-parser",
+  "repository": "github:insysbio/units-parser",
   "bugs": {
-    "url": "https://github.com/insysbio/unit-parser/issues",
+    "url": "https://github.com/insysbio/units-parser/issues",
     "email": "dev@insysbio.com"
   },
   "contributors": [

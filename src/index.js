@@ -1,9 +1,9 @@
 'use strict';
 
 const Unit = require('./unit');
-const UnitParser = require('./unit-parser');
+const UnitsParser = require('./units-parser');
 
 module.exports = {
   Unit,
-  UnitParser
+  UnitsParser
 }

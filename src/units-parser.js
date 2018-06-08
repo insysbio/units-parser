@@ -2,7 +2,7 @@
 
 const Unit = require('./unit');
 
-module.exports = class UnitParser {
+module.exports = class UnitsParser {
   constructor(baseUnits=[]){
     this._base = baseUnits;
   }
