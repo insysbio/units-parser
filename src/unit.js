@@ -16,8 +16,8 @@ module.exports = class Unit extends Array {
     return this
       .map((item, i) => {
         let operator = (item.exponent<0)
-          ? '/'
-          : (i>0) ? '*' : ''; // no operator for first element
+          ? ( (i>0) ? '/' : '1/' ) // 1 for 1/L
+          : ( (i>0) ? '*' : '' ); // no operator for first element
 
         let expAbs = Math.abs(item.exponent); // absolute value
         let exponent = (expAbs!==1)
@@ -98,7 +98,7 @@ module.exports = class Unit extends Array {
    * @returns {Unit} Unit in SBML friendly format.
    */
   toRebaseUnits(transformator){ // TOFIX: not checked yet
-    let sbmlUnit = [];
+    let sbmlUnit = new Unit();
     this.forEach((parseUnit) => {
       transformator[parseUnit.kind].forEach((simpleUnit) => {
         sbmlUnit.push({
