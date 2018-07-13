@@ -8,7 +8,7 @@ const qspToSbml = require('./qsp-to-sbml.json');
  */
 module.exports = class Unit extends Array {
   /**
-   * Serialize Unit object.
+   * Serialize Unit object to string.
    *
    * @return {string} of format: 'mM2*L/mg/h2'
    */
@@ -30,12 +30,34 @@ module.exports = class Unit extends Array {
   }
 
   /**
-   * Serialize unit-object to string.
+   * Serialize Unit object to HTML code.
+   *
+   * @return {string} of format: 'mM<sup>2</sup> * L / mg / h<sup>2</sup>'
+   */
+  toHTML(){
+    return this
+      .map((item, i) => {
+        let operator = (item.exponent<0)
+          ? ( (i>0) ? ' / ' : '1 / ' ) // 1 for 1/L
+          : ( (i>0) ? '&#183;' : '' ); // no operator for first element
+
+        let expAbs = Math.abs(item.exponent); // absolute value
+        let exponent = (expAbs!==1)
+          ? '<sup>' + expAbs + '</sup>'
+          : '';
+
+        return operator + item.kind + exponent;
+      })
+      .join('');
+  }
+
+  /**
+   * Serialize unit-object to identificator.
    *
    * @return {string} of type 'mM2_L\__mg\__h2'
    */
   toHash(){
-    return this
+    return this.concat([]) // clone array to exclude mutation
       .sort((x1, x2) => x1.kind > x2.kind ? -1 : 1)
       .map((item, i) => {
         let operator = (item.exponent<0)
@@ -53,7 +75,7 @@ module.exports = class Unit extends Array {
   }
 
   /**
-   * Serialize unit-object.
+   * Serialize unit-object to Tex format.
    *
    * @return {string} with TeX '\frac{mM^{2} \cdot L}{mg \cdot h^{2}}'
    */

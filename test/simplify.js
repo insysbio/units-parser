@@ -8,7 +8,7 @@ const parser = new UnitsParser(qspUnits);
 describe("Checking simplify", () => {
   var test = {
     in: "uM2/mL/uM",
-    res: "/mL*uM"
+    res: "1/mL*uM"
   };
 
   it("parse and compare: " + test.in, () => {
