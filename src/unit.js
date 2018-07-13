@@ -199,7 +199,7 @@ module.exports = class Unit extends Array {
     return newUnit;
   }
 
-  toXmlUnitDefinition(transformator, options={nameAsTex:false}){
+  toXmlUnitDefinition(transformator, options={nameStyle:'string'}){
     let units = this.toRebaseUnits(transformator);
 
     let listOfUnits = units
@@ -211,10 +211,25 @@ module.exports = class Unit extends Array {
     let name = options.nameAsTex
       ? ` name="${this.toTex()}"`
       : ` name="${this.toString()}"`;
-    let unitDefinition = `<unitDefinition id="${this.toHash()}"${name}>\n  <listOfUnits>`
+
+    let nameAttr; // name attribute
+    switch (options.nameStyle) {
+      case 'TeX':
+        nameAttr = ` name="${this.toTex()}"`
+        break;
+      case 'HTML':
+        nameAttr = ` name="${this.toHTML()}"`
+        break;
+      case 'string':
+        nameAttr = ` name="${this.toString()}"`
+        break;
+      default:
+        throw new Error(options.nameStyle + ' is unsupported value for "options.nameStyle". Use one of values: TeX, HTML, string.');
+    }
+
+    return `<unitDefinition id="${this.toHash()}"${nameAttr}>\n  <listOfUnits>`
       + listOfUnits
       + `\n  </listOfUnits>\n</unitDefinition>`;
-    return unitDefinition;
   }
 
   /**
