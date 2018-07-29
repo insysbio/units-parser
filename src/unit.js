@@ -7,6 +7,7 @@ const qspToSbml = require('./qsp-to-sbml.json');
  *
  */
 module.exports = class Unit extends Array {
+
   /**
    * Serialize Unit object to string.
    *
@@ -119,20 +120,26 @@ module.exports = class Unit extends Array {
    *
    * @returns {Unit} Unit in SBML friendly format.
    */
-  toRebaseUnits(transformator){ // TOFIX: not checked yet
-    let sbmlUnit = new Unit();
+  toRebaseUnits(transformator){
+    let newUnit = new Unit();
     this.forEach((parseUnit) => {
       transformator[parseUnit.kind].forEach((simpleUnit) => {
-        sbmlUnit.push({
+        let simpleUnit_defaults = {
           kind: simpleUnit.kind,
-          multiplier: simpleUnit.multiplier || 1,
-          scale: simpleUnit.scale || 0,
-          exponent: simpleUnit.exponent * parseUnit.exponent || parseUnit.exponent
+          multiplier: simpleUnit.multiplier!==undefined ? simpleUnit.multiplier : 1,
+          scale: simpleUnit.scale!==undefined ? simpleUnit.scale : 0,
+          exponent: simpleUnit.exponent!==undefined ? simpleUnit.exponent : 1,
+        };
+        newUnit.push({
+          kind: simpleUnit_defaults.kind,
+          multiplier: simpleUnit_defaults.multiplier * Math.pow(parseUnit.multiplier, 1/simpleUnit_defaults.exponent),
+          scale: simpleUnit_defaults.scale + parseUnit.scale/simpleUnit_defaults.exponent,
+          exponent: simpleUnit_defaults.exponent * parseUnit.exponent
         });
       });
     });
 
-    return sbmlUnit
+    return newUnit
   }
 
   /**
@@ -248,5 +255,9 @@ module.exports = class Unit extends Array {
    */
   toJSON(){
     return JSON.stringify(this, null, 2)
+  }
+
+  toObject(){
+    return [].concat(this);
   }
 }
