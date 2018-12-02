@@ -12,7 +12,8 @@ let incorrectUnits = [
   {str0: "mg^2\\L^3", errorType: SyntaxError},
   {str0: "m^.33/kg^2.2", errorType: SyntaxError},
   {str0: "mg^2\L^3", errorType: SyntaxError},
-  {str0: "mg^2L^3", errorType: SyntaxError}
+  {str0: "mg^2L^3", errorType: SyntaxError},
+  {str0: '_', errorType: SyntaxError}
 ];
 
 describe('Testing incorrect units.', () => {

@@ -22,7 +22,7 @@ module.exports = class Unit extends Array {
 
         let expAbs = Math.abs(item.exponent); // absolute value
         let exponent = (expAbs!==1)
-          ? expAbs
+          ? '^' + expAbs
           : '';
 
         return operator + item.kind + exponent;

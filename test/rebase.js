@@ -13,7 +13,7 @@ describe('Testing rebase', () => {
       kg: [{"kind":"g", "scale": 3}],
       L: [{"kind":"m", "scale": -2, "exponent": 3}]
     },
-    rebased: 'g/m3'
+    rebased: 'g/m^3'
   };
   it('Check "kg/L" to "g/m3"', () => {
     let rebased = test.source
