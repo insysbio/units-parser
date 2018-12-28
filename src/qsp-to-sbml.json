@@ -5,7 +5,7 @@
   "umole":[{"kind":"mole", "scale": -6}],
   "mmole":[{"kind":"mole", "scale": -3}],
   "mole": [{"kind":"mole"}],
-  
+
   "fM":[{"kind":"mole", "scale": -15}, {"kind":"litre", "exponent": -1}],
   "pM":[{"kind":"mole", "scale": -12}, {"kind":"litre", "exponent": -1}],
   "nM":[{"kind":"mole", "scale": -9},  {"kind":"litre", "exponent": -1}],
@@ -13,10 +13,10 @@
   "mM":[{"kind":"mole", "scale": -3},  {"kind":"litre", "exponent": -1}],
   "M": [{"kind":"mole"},             {"kind":"litre", "exponent": -1}],
   "kM":[{"kind":"mole", "scale": 3},   {"kind":"litre", "exponent": -1}],
-  
+
   "AU":[{"kind":"mole"},             {"kind":"litre", "exponent": -1}],
   "IU":[{"kind":"mole"},             {"kind":"litre", "exponent": -1}],
-  
+
   "fL":[{"kind":"litre", "scale": -15}],
   "pL":[{"kind":"litre", "scale": -12}],
   "nL":[{"kind":"litre", "scale": -9}],
@@ -24,7 +24,7 @@
   "mL":[{"kind":"litre", "scale": -3}],
   "dL":[{"kind":"litre", "scale": -1}],
   "L": [{"kind":"litre"}],
-  
+
   "fg":[{"kind":"gram", "scale": -15}],
   "pg":[{"kind":"gram", "scale": -12}],
   "ng":[{"kind":"gram", "scale": -9}],
@@ -32,7 +32,7 @@
   "mg":[{"kind":"gram", "scale": -3}],
   "g": [{"kind":"gram"}],
   "kg":[{"kind":"kilogram"}],
-  
+
   "fs": [{"kind": "second", "scale": -15}],
   "ps": [{"kind": "second", "scale": -12}],
   "ns": [{"kind": "second", "scale": -9}],
@@ -44,15 +44,15 @@
   "day":[{"kind": "second", "multiplier": 86400}],
   "week":[{"kind": "second", "multiplier": 604800}],
   "year":[{"kind": "second", "multiplier": 31558208}],
-  
+
   "kat": [{"kind": "katal"}],
-  
+
   "cell": [{"kind": "item"}],
   "kcell":[{"kind": "item", "scale": 3}],
-  
+
   "cal": [{"kind": "joule", "multiplier": 4.1868}],
   "kcal":[{"kind": "joule", "multiplier": 4.1868, "scale": 3}],
-  
+
   "fm":[{"kind":"metre", "scale": -15}],
   "pm":[{"kind":"metre", "scale": -12}],
   "nm":[{"kind":"metre", "scale": -9}],
@@ -60,11 +60,11 @@
   "mm":[{"kind":"metre", "scale": -3}],
   "cm":[{"kind":"metre", "scale": -2}],
   "m":[{"kind":"metre"}],
-  
+
   "UL": [{"kind": "dimensionless"}],
   "item":[{"kind": "item"}],
   "percent": [{"kind": "dimensionless", "scale": -2}],
-  
+
   "cd":[{"kind":"candela"}],
   "Pa":[{"kind":"pascal"}],
   "A":[{"kind":"ampere"}],
@@ -91,5 +91,6 @@
   "N":[{"kind":"newton"}],
   "Hz":[{"kind":"hertz"}],
   "sr":[{"kind":"steradian"}],
-  "rad":[{"kind":"radian"}]
+  "rad":[{"kind":"radian"}],
+  "xxx":[{"kind":"dimensionless"}]
 }

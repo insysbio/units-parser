@@ -215,10 +215,6 @@ module.exports = class Unit extends Array {
       })
       .join('');
 
-    let name = options.nameAsTex
-      ? ` name="${this.toTex()}"`
-      : ` name="${this.toString()}"`;
-
     let nameAttr; // name attribute
     switch (options.nameStyle) {
       case 'TeX':
