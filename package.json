@@ -1,6 +1,6 @@
 {
   "name": "units-parser",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Parsing and transformation of units of measurements.",
   "main": "src",
   "scripts": {
@@ -24,6 +24,8 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-xml": "^0.3.2",
     "jsdoc": "^3.5.5",
     "mocha": "^5.2.0"
   }

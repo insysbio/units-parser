@@ -17,7 +17,8 @@ const correctUnits = [
   {str0: 'mg2/L3', str: 'mg^2/L^3', hash: 'mg2__L3', tex: '\\frac{mg^{2}}{L^{3}}', html: 'mg<sup>2</sup> / L<sup>3</sup>'},
   {str0: 'mg/L/s', str: 'mg/L/s', hash: '__s_mg__L', tex: '\\frac{mg}{L \\cdot s}', html: 'mg / L / s'},
   {str0: 'm^1.33/kg^2.2', str: 'm^1.33/kg^2.2', hash: 'm1_33__kg2_2', tex: '\\frac{m^{1.33}}{kg^{2.2}}', html: 'm<sup>1.33</sup> / kg<sup>2.2</sup>'},
-  {str0: '1/L', str: '1/L', hash: '__L', tex: '\\frac{1}{L}', html: '1 / L'}
+  {str0: '1/L', str: '1/L', hash: '__L', tex: '\\frac{1}{L}', html: '1 / L'},
+  {str0: 'uM*L', str: 'uM*L', hash: 'uM_L', tex: 'uM \\cdot L', html: 'uM&#183;L'},
 ];
 
 describe('Testing correct units.', () => {
