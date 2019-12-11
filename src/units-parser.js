@@ -17,6 +17,7 @@ module.exports = class UnitsParser {
     let unit = new Unit();
 
     let items = unitString // split to parts
+      .replace(/\s*/g, '') // remove blanks
       .match(/(^1\/|\/|\*)?[^*/]+/g);
 
     if(items===null)
