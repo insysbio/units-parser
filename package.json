@@ -1,6 +1,6 @@
 {
   "name": "units-parser",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Parsing and transformation of units of measurements.",
   "main": "src",
   "scripts": {
